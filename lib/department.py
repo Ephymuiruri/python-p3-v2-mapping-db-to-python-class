@@ -103,11 +103,11 @@ class Department:
         """"Return a Department object corresponding to the table row matching the specified primary key"""
         sql = """
             SELECT * FROM departments
-            WHERE id =?
+            WHERE id = ?
         """
-        CURSOR.execute(sql, (id,))
-        row = CURSOR.fetchone()
-        return cls.instance_from_db(row)
+        row= CURSOR.execute(sql, (id,)).fetchone()
+        
+        return cls.instance_from_db(row) if row else None
     @classmethod
     def find_by_name(cls, name):
         """Return a Department object corresponding to first table row matching specified name"""
